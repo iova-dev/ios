@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 extension UIButton {
-    
+    // creates a basic button with given parameters
     func initBasicButton( title: String, titleSize: CGFloat, titleHexColor: String, backGroundHexColor: String) -> UIButton{
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: titleSize)
+        button.titleLabel?.font = UIFont.init(name: "Lusitana-Regular.ttf", size: titleSize)
         button.setTitleColor(UIColor.init(hexString: titleHexColor), for: .normal)
         button.backgroundColor = UIColor.init(hexString: backGroundHexColor)
         button.layer.borderColor = UIColor.black.cgColor
@@ -32,11 +32,12 @@ extension UIButton {
 
 
 extension UITextField {
-    
-    func initBasicTxtField(_ placeHolder: String, backGroundHexColor: String) -> UITextField{
+    // creates a basic text Field with given parameters. ex: let basic txtField = UITextField().initBasicTxtField(placeHolder: "place holder text, textSize: 20, backGroundHexColor: "#9875AA"")
+    func initBasicTxtField(placeHolder: String, textSize: CGFloat, backGroundHexColor: String) -> UITextField{
         let txtField = UITextField()
         txtField.backgroundColor = UIColor.init(hexString: backGroundHexColor)
         txtField.translatesAutoresizingMaskIntoConstraints = false
+        txtField.font = UIFont.init(name: "Lusitana-Regular.ttf", size: textSize)
         txtField.placeholder = placeHolder
         txtField.layer.borderColor = UIColor.black.cgColor
         txtField.layer.borderWidth = 1
@@ -52,6 +53,8 @@ extension UITextField {
 }
 
 extension UIViewController{
+    
+    //allows the user to tap anywhere to get rid of the keyboard. [UX] call it on any ViewController's viewdidLoad()
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -80,6 +83,7 @@ extension UIViewController{
 }
 
 extension UIColor {
+    //this extensions allows the devs to use hex as UIColors. ex. let red = UIColor.init(hexString "#000000")
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
         let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let scanner = Scanner(string: hexString)
