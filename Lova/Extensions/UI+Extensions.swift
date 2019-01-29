@@ -13,43 +13,116 @@ extension UIButton {
     // creates a basic button with given parameters
     func initBasicButton( title: String, titleSize: CGFloat, titleHexColor: String, backGroundHexColor: String) -> UIButton{
         let button = UIButton()
+        guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
+            fatalError("""
+        Failed to load the "Raleway-Bold" font.
+        Make sure the font file is included in the project and the font name is spelled correctly.
+        """
+            )
+        }
+        button.titleLabel?.font = UIFontMetrics.default.scaledFont(for: customFont)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.init(name: "Lusitana-Regular.ttf", size: titleSize)
         button.setTitleColor(UIColor.init(hexString: titleHexColor), for: .normal)
         button.backgroundColor = UIColor.init(hexString: backGroundHexColor)
         button.layer.borderColor = UIColor.black.cgColor
-        button.layer.borderWidth = 1
+        button.layer.borderWidth = 0
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
         button.layer.masksToBounds = false
         button.layer.shadowRadius = 5
         button.layer.shadowOpacity = 0.5
-        button.layer.cornerRadius = 15
         return button
+    }
+    
+    
+    func initStringButton(textBeforeButton: String, buttonText: String) -> UIButton{
+        let button = UIButton()
+        guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
+            fatalError("""
+        Failed to load the "Raleway-Bold" font.
+        Make sure the font file is included in the project and the font name is spelled correctly.
+        """
+            )
+        }
+        button.titleLabel?.font = UIFontMetrics.default.scaledFont(for: customFont)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(buttonText, for: .normal)
+        button.setTitleColor(UIColor.init(hexString: "#2ecc71"), for: .normal)
+        button.backgroundColor = UIColor.init(hexString: "#FFFFFFF", alpha: 0)
+        let label = UILabel().initLabel(text: textBeforeButton, fontSize: 15, hexcolor: "#0000000")
+        label.textAlignment = .right
+        button.addSubview(label)
+        NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: button.topAnchor, constant: 0),
+                                     label.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: 100),
+                                     label.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 0)])
+        return button
+        
     }
 }
 
 
 extension UITextField {
     // creates a basic text Field with given parameters. ex: let basic txtField = UITextField().initBasicTxtField(placeHolder: "place holder text, textSize: 20, backGroundHexColor: "#9875AA"")
-    func initBasicTxtField(placeHolder: String, textSize: CGFloat, backGroundHexColor: String) -> UITextField{
+    func initBasicTxtField(placeHolder: String, textSize: CGFloat) -> UITextField{
         let txtField = UITextField()
-        txtField.backgroundColor = UIColor.init(hexString: backGroundHexColor)
+        guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
+            fatalError("""
+        Failed to load the "lusitana" font.
+        Make sure the font file is included in the project and the font name is spelled correctly.
+        """
+            )
+        }
+        txtField.font = UIFontMetrics.default.scaledFont(for: customFont)
+        txtField.adjustsFontForContentSizeCategory = true
+        txtField.backgroundColor = UIColor.init(hexString: "#FFFFFFF", alpha: 0)
         txtField.translatesAutoresizingMaskIntoConstraints = false
-        txtField.font = UIFont.init(name: "Lusitana-Regular.ttf", size: textSize)
         txtField.placeholder = placeHolder
-        txtField.layer.borderColor = UIColor.black.cgColor
-        txtField.layer.borderWidth = 1
-        txtField.layer.shadowColor = UIColor.black.cgColor
-        txtField.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        txtField.borderStyle = .none
+        txtField.layer.backgroundColor = UIColor.white.cgColor
         txtField.layer.masksToBounds = false
-        txtField.layer.shadowRadius = 5
-        txtField.layer.shadowOpacity = 0.5
-        txtField.layer.cornerRadius = 15
+        txtField.layer.shadowColor = UIColor.gray.cgColor
+        txtField.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        txtField.layer.shadowOpacity = 1.0
+        txtField.layer.shadowRadius = 0.0
+
         return txtField
     }
-    
+}
+
+extension UILabel {
+    func initLabel(text: String, fontSize: CGFloat,  hexcolor: String) -> UILabel{
+        let label = UILabel()
+        guard let customFont = UIFont(name: "Raleway-Regular", size: UIFont.labelFontSize) else {
+            fatalError("""
+        Failed to load the "Raleway-Bold" font.
+        Make sure the font file is included in the project and the font name is spelled correctly.
+        """
+            )
+        }
+        label.font = UIFontMetrics.default.scaledFont(for: customFont)
+        label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        label.textColor = UIColor.init(hexString: hexcolor)
+        label.clipsToBounds = true
+        label.layer.masksToBounds = false
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }
+}
+
+
+extension UIImageView {
+    func initBasicImage(imageName: String) -> UIImageView{
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: imageName)
+        imageView.layer.masksToBounds = false
+        imageView.clipsToBounds = true
+        return imageView
+    }
 }
 
 extension UIViewController{
@@ -79,6 +152,18 @@ extension UIViewController{
     @objc func keyboardWillHide(){
         self.view.frame.origin.y = 0
         
+    }
+    
+    // Function that will allow user to stay logged in.
+    func isUserLoggedIn()->Bool{
+        let defaults = UserDefaults.standard
+        
+        if let _ = defaults.string(forKey: "isUserLoggedIn"){
+            return false
+        }else{
+            defaults.set(true, forKey: "isUserLoggedIn")
+            return false
+        }
     }
 }
 

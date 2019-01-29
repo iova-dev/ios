@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let button = UIButton().initBasicButton(title: "test Button", titleSize: 24, titleHexColor: "#99999", backGroundHexColor: "#978430")
+    let button = UIButton().initBasicButton(title: "test Button", titleSize: 24, titleHexColor: "#99999", backGroundHexColor: "#2ecc71")
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,6 +21,11 @@ class MainViewController: UIViewController {
                                      button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      button.heightAnchor.constraint(equalToConstant: 50),
                                      button.widthAnchor.constraint(equalToConstant: 100)])
+        
+        if (!isUserLoggedIn()){
+            let vcToPresent = LoginViewController()
+            navigationController?.present(vcToPresent, animated: true, completion: nil)
+        }
     }
 
     override func viewDidLoad() {
