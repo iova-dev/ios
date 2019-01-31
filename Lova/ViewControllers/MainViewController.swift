@@ -10,7 +10,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     var delegate: MainControllerDelegate?
-    var isSideMenuTapped: Bool = false
     let button = UIButton().initBasicButton(title: "test Button", titleSize: 24, titleHexColor: "#AAAAAAA", backGroundHexColor: "#2ecc71")
 
     

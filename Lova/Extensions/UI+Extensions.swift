@@ -169,12 +169,20 @@ extension UIViewController{
     // Function that will allow user to stay logged in.
     func isUserLoggedIn()->Bool{
         let defaults = UserDefaults.standard
-
        let log = defaults.bool(forKey: "isUserLoggedIn")
         if log {
             return true
         }else{
             return false
+        }
+    }
+    
+    func logout(){
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "isUserLoggedIn")
+        if (isUserLoggedIn()){
+            let vcToPresent = LoginViewController()
+            navigationController?.present(vcToPresent, animated: true, completion: nil)
         }
     }
 }

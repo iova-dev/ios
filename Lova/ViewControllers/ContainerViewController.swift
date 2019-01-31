@@ -33,10 +33,9 @@ class ContainerViewController: UIViewController{
         if menuController == nil{
             menuController = MenuViewController()
             menuController.delegate = self
-            view.insertSubview(menuController.view, at: 0)
             addChild(menuController)
+            view.insertSubview(menuController.view, at: 0)
             menuController.didMove(toParent: self)
-            
         }
     }
     
@@ -44,10 +43,12 @@ class ContainerViewController: UIViewController{
         if shouldExpand{
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 200
+                self.centerController.view.alpha = 0.7
             }, completion: nil)
         } else{
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.centerController.view.frame.origin.x = 0
+                self.centerController.view.alpha = 1
             }) { (_) in
                 guard let menuOption = menuOption else {return}
                 self.didSelectMenuOption(menuOption: menuOption)
@@ -62,8 +63,13 @@ class ContainerViewController: UIViewController{
             print("Profile")
         case .settings:
             print("settings")
-        case .other:
-            print("other")
+        case .logout:
+            if (!isUserLoggedIn()){
+                let vcToPresent = LoginViewController()
+                navigationController?.present(vcToPresent, animated: true, completion: nil)
+            } else{
+                MainViewController().logout()
+            }
         }
     }
 }
@@ -74,7 +80,7 @@ extension ContainerViewController: MainControllerDelegate{
             configureMenuController()
         }
         
-        isExpanded = !isExpanded
         showMenuController(shouldExpand: isExpanded, menuOption: menuOption)
+        isExpanded = !isExpanded
     }
 }
