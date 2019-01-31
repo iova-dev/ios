@@ -36,6 +36,7 @@ extension UIButton {
     }
     
     
+    
     func initStringButton(textBeforeButton: String, buttonText: String) -> UIButton{
         let button = UIButton()
         guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
@@ -121,7 +122,18 @@ extension UIImageView {
         imageView.image = UIImage(named: imageName)
         imageView.layer.masksToBounds = false
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
+        
+    }
+}
+
+extension UIView{
+    func initSideMenu() -> UIView{
+        let menu = UIView()
+        menu.translatesAutoresizingMaskIntoConstraints = false
+        menu.backgroundColor = UIColor.init(hexString: "#2ecc71")
+        return menu
     }
 }
 
@@ -157,11 +169,11 @@ extension UIViewController{
     // Function that will allow user to stay logged in.
     func isUserLoggedIn()->Bool{
         let defaults = UserDefaults.standard
-        
-        if let _ = defaults.string(forKey: "isUserLoggedIn"){
-            return false
+
+       let log = defaults.bool(forKey: "isUserLoggedIn")
+        if log {
+            return true
         }else{
-            defaults.set(true, forKey: "isUserLoggedIn")
             return false
         }
     }

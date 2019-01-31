@@ -17,9 +17,10 @@ class LoginViewController: UIViewController {
     let logInButton: UIButton = UIButton().initBasicButton(title: "Log in", titleSize: 25, titleHexColor: "#FFFFFFFF", backGroundHexColor: "#2ecc71")
     let createButton: UIButton = UIButton().initStringButton(textBeforeButton: "Don't have an account?", buttonText: "Create an account!")
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
+        logInButton.addTarget(self, action: #selector(performLogin), for: .touchUpInside)
+        
         view.addSubview(logoView)
         view.addSubview(emailTxtBox)
         view.addSubview(passWordTxtBox)
@@ -69,12 +70,18 @@ class LoginViewController: UIViewController {
                                      createButton.heightAnchor.constraint(equalToConstant: 45),
                                      createButton.widthAnchor.constraint(equalToConstant: 350)])
         
-        
     }
     
     
     override func viewDidLoad() {
         super .viewDidLoad()
+    }
+    
+    
+    @objc func performLogin(){
+        self.dismiss(animated: true, completion: nil)
+       let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "isUserLoggedIn")
     }
     
 }

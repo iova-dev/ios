@@ -16,6 +16,11 @@
 		2BE2A6082200D96F0084F52B /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BE2A5F62200D96E0084F52B /* Raleway-Bold.ttf */; };
 		2BE2A61C2200D9810084F52B /* Lusitana-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BE2A61A2200D9810084F52B /* Lusitana-Regular.ttf */; };
 		2BE2A61E2200DA290084F52B /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BE2A61D2200DA290084F52B /* Raleway-Regular.ttf */; };
+		2BE2A6262202AD0F0084F52B /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A6252202AD0F0084F52B /* ContainerViewController.swift */; };
+		2BE2A6282202CC670084F52B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A6272202CC670084F52B /* MenuViewController.swift */; };
+		2BE2A62B2202CF8E0084F52B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A62A2202CF8E0084F52B /* Protocols.swift */; };
+		2BE2A62D2202D6670084F52B /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A62C2202D6670084F52B /* MenuOptionCell.swift */; };
+		2BE2A631220367CE0084F52B /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A630220367CE0084F52B /* MenuOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		2BE2A5F62200D96E0084F52B /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		2BE2A61A2200D9810084F52B /* Lusitana-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lusitana-Regular.ttf"; sourceTree = "<group>"; };
 		2BE2A61D2200DA290084F52B /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		2BE2A6252202AD0F0084F52B /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		2BE2A6272202CC670084F52B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		2BE2A62A2202CF8E0084F52B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		2BE2A62C2202D6670084F52B /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
+		2BE2A630220367CE0084F52B /* MenuOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +72,10 @@
 		2BE2A5DA21FFEECA0084F52B /* Lova */ = {
 			isa = PBXGroup;
 			children = (
+				2BE2A62F220367BC0084F52B /* Models */,
+				2BE2A62E220356930084F52B /* Views */,
+				2BE2A6292202CF7A0084F52B /* Utils */,
 				2BE2A5F32200C8AF0084F52B /* LovaService */,
-				2BE2A5DB21FFEECA0084F52B /* AppDelegate.swift */,
 				2BE2A5F42200D9250084F52B /* Fonts */,
 				2BE2A5F22200C89B0084F52B /* ViewControllers */,
 				2BE2A5F12200C8900084F52B /* Extensions */,
@@ -86,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				2BE2A5DD21FFEECA0084F52B /* MainViewController.swift */,
+				2BE2A6252202AD0F0084F52B /* ContainerViewController.swift */,
+				2BE2A6272202CC670084F52B /* MenuViewController.swift */,
 				2BE2A5ED2200C8550084F52B /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
@@ -106,6 +120,31 @@
 				2BE2A61A2200D9810084F52B /* Lusitana-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		2BE2A6292202CF7A0084F52B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2BE2A5DB21FFEECA0084F52B /* AppDelegate.swift */,
+				2BE2A62A2202CF8E0084F52B /* Protocols.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2BE2A62E220356930084F52B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2BE2A62C2202D6670084F52B /* MenuOptionCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2BE2A62F220367BC0084F52B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2BE2A630220367CE0084F52B /* MenuOptions.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,9 +221,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE2A5F02200C8880084F52B /* UI+Extensions.swift in Sources */,
+				2BE2A6282202CC670084F52B /* MenuViewController.swift in Sources */,
+				2BE2A62B2202CF8E0084F52B /* Protocols.swift in Sources */,
 				2BE2A5EE2200C8550084F52B /* LoginViewController.swift in Sources */,
+				2BE2A6262202AD0F0084F52B /* ContainerViewController.swift in Sources */,
+				2BE2A62D2202D6670084F52B /* MenuOptionCell.swift in Sources */,
 				2BE2A5DE21FFEECA0084F52B /* MainViewController.swift in Sources */,
 				2BE2A5DC21FFEECA0084F52B /* AppDelegate.swift in Sources */,
+				2BE2A631220367CE0084F52B /* MenuOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
