@@ -21,6 +21,8 @@
 		2BE2A62B2202CF8E0084F52B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A62A2202CF8E0084F52B /* Protocols.swift */; };
 		2BE2A62D2202D6670084F52B /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A62C2202D6670084F52B /* MenuOptionCell.swift */; };
 		2BE2A631220367CE0084F52B /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A630220367CE0084F52B /* MenuOptions.swift */; };
+		2BF30CA3220788AD000A1C85 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF30CA2220788AD000A1C85 /* MainTableViewCell.swift */; };
+		2BF30CA5220A93AD000A1C85 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		2BE2A62A2202CF8E0084F52B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		2BE2A62C2202D6670084F52B /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		2BE2A630220367CE0084F52B /* MenuOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
+		2BF30CA2220788AD000A1C85 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 				2BE2A6252202AD0F0084F52B /* ContainerViewController.swift */,
 				2BE2A6272202CC670084F52B /* MenuViewController.swift */,
 				2BE2A5ED2200C8550084F52B /* LoginViewController.swift */,
+				2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE2A62C2202D6670084F52B /* MenuOptionCell.swift */,
+				2BF30CA2220788AD000A1C85 /* MainTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BF30CA5220A93AD000A1C85 /* RegisterViewController.swift in Sources */,
 				2BE2A5F02200C8880084F52B /* UI+Extensions.swift in Sources */,
 				2BE2A6282202CC670084F52B /* MenuViewController.swift in Sources */,
 				2BE2A62B2202CF8E0084F52B /* Protocols.swift in Sources */,
@@ -229,6 +236,7 @@
 				2BE2A5DE21FFEECA0084F52B /* MainViewController.swift in Sources */,
 				2BE2A5DC21FFEECA0084F52B /* AppDelegate.swift in Sources */,
 				2BE2A631220367CE0084F52B /* MenuOptions.swift in Sources */,
+				2BF30CA3220788AD000A1C85 /* MainTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

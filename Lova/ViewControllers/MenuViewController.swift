@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 
-private let reUseId = "MenuOptionCell"
 class MenuViewController: UIViewController{
     
     var tableView: UITableView!
     var delegate: MainControllerDelegate?
+    let cellId = "MenuOptionCell"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Menu Loaded")
         configureTableView()
     }
     
@@ -27,7 +28,7 @@ class MenuViewController: UIViewController{
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MenuOptionCell.self, forCellReuseIdentifier: reUseId)
+        tableView.register(MenuOptionCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = .lightGray
         tableView.separatorStyle = .none
         
@@ -48,7 +49,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reUseId, for: indexPath) as! MenuOptionCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MenuOptionCell
         let menuOption = MenuOptions(rawValue: indexPath.row)
         cell.buttonDesc.text = menuOption?.description
         cell.iconView.image = menuOption?.image

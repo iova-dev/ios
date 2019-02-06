@@ -16,7 +16,29 @@ class ContainerViewController: UIViewController{
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        print("Constainer Loaded")
         configureHomeController()
+        configureNavigation()
+    }
+    
+    
+    func configureNavigation(){
+        //navigationController?.navigationBar.layer
+        self.navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor.init(hexString: "#2ecc71")
+        navigationItem.title = "Lova"
+        let titleLable = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width/10, height: view.frame.height))
+        titleLable.text = "Lova"
+        titleLable.font = UIFont(name: "Raleway-Regular", size: 40)
+        titleLable.textColor = .white
+        navigationItem.titleView = titleLable
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "sideMenuButtonImage"), style: .plain, target: self, action: #selector(showSideMenu))
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        navigationController?.navigationBar.layer.masksToBounds = false
+        navigationController?.navigationBar.layer.shadowRadius = 5
+        navigationController?.navigationBar.layer.shadowOpacity = 0.5
         
     }
     
@@ -38,6 +60,17 @@ class ContainerViewController: UIViewController{
             menuController.didMove(toParent: self)
         }
     }
+    
+    func configureLoginController(){
+        let nextVC = LoginViewController()
+        navigationController?.present(nextVC, animated: true, completion: nil)
+    }
+    
+    func configureRegisterController(){
+        let nextVC = RegisterViewController()
+        navigationController?.present(nextVC, animated: true, completion: nil)
+    }
+    
     
     func showMenuController(shouldExpand: Bool, menuOption: MenuOptions?){
         if shouldExpand{
@@ -64,17 +97,24 @@ class ContainerViewController: UIViewController{
         case .settings:
             print("settings")
         case .logout:
-            if (!isUserLoggedIn()){
-                let vcToPresent = LoginViewController()
-                navigationController?.present(vcToPresent, animated: true, completion: nil)
-            } else{
-                MainViewController().logout()
-            }
+            logout()
         }
+    }
+    @objc func showSideMenu(){
+        handleMenuToggle(forMenuOption: nil)
     }
 }
 
 extension ContainerViewController: MainControllerDelegate{
+    func login() {
+    }
+    
+    func logout() {
+        navigationController?.present(LoginViewController(), animated: true, completion: nil)
+        UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+    }
+    
+    
     func handleMenuToggle(forMenuOption menuOption: MenuOptions?) {
         if !isExpanded{
             configureMenuController()

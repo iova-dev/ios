@@ -9,6 +9,7 @@
 import UIKit
 
 class MenuOptionCell: UITableViewCell {
+    let reUseId = "MenuOptionCell"
     let iconView = UIImageView().initBasicImage(imageName: "settingsImage")
     let buttonDesc = UILabel().initLabel(text: "Sample Text", fontSize: 100, hexcolor: "#FFFFFFFF")
 

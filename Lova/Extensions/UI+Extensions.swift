@@ -37,6 +37,8 @@ extension UIButton {
     
     
     
+    
+    
     func initStringButton(textBeforeButton: String, buttonText: String) -> UIButton{
         let button = UIButton()
         guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
@@ -62,6 +64,13 @@ extension UIButton {
     }
 }
 
+extension UITableView{
+    func initFullTableView()->UITableView{
+        let table = UITableView(frame: .infinite)
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }
+}
 
 extension UITextField {
     // creates a basic text Field with given parameters. ex: let basic txtField = UITextField().initBasicTxtField(placeHolder: "place holder text, textSize: 20, backGroundHexColor: "#9875AA"")
@@ -174,15 +183,6 @@ extension UIViewController{
             return true
         }else{
             return false
-        }
-    }
-    
-    func logout(){
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: "isUserLoggedIn")
-        if (isUserLoggedIn()){
-            let vcToPresent = LoginViewController()
-            navigationController?.present(vcToPresent, animated: true, completion: nil)
         }
     }
 }

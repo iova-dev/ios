@@ -10,4 +10,6 @@ import Foundation
 
 protocol MainControllerDelegate {
     func handleMenuToggle(forMenuOption menuOption: MenuOptions?)
+    func login()
+    func logout()
 }

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController {
+    var delegate: MainControllerDelegate?
     let logoView: UIImageView = UIImageView().initBasicImage(imageName: "logo")
     let emailTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Email", textSize: 20)
     let passWordTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Password", textSize: 20)
@@ -20,6 +21,8 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         logInButton.addTarget(self, action: #selector(performLogin), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(performRegister), for: .touchUpInside)
+        navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoView)
         view.addSubview(emailTxtBox)
@@ -75,13 +78,19 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        print("MainViewController Loaded")
     }
     
     
     @objc func performLogin(){
-        self.dismiss(animated: true, completion: nil)
-       let defaults = UserDefaults.standard
+        let defaults = UserDefaults.standard
         defaults.set(true, forKey: "isUserLoggedIn")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func performRegister(){
+            let nextVC = RegisterViewController()
+            navigationController?.present(nextVC, animated: true, completion: nil)
     }
     
 }
