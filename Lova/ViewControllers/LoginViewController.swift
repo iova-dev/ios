@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    //initial set up
     var delegate: MainControllerDelegate?
     let logoView: UIImageView = UIImageView().initBasicImage(imageName: "logo")
     let emailTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Email", textSize: 20)
@@ -19,9 +21,11 @@ class LoginViewController: UIViewController {
     let createButton: UIButton = UIButton().initStringButton(textBeforeButton: "Don't have an account?", buttonText: "Create an account!")
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        //additional set up to get view ready
         super .viewWillAppear(true)
         logInButton.addTarget(self, action: #selector(performLogin), for: .touchUpInside)
-        createButton.addTarget(self, action: #selector(performRegister), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(onTapCustomAlertButton(_:)), for: .touchUpInside)
         navigationController?.navigationBar.isHidden = true
         
         view.addSubview(logoView)
@@ -32,6 +36,8 @@ class LoginViewController: UIViewController {
         view.addSubview(createButton)
         view.backgroundColor = .white
         
+        
+        //setting the constraints
         NSLayoutConstraint.activate([logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      logoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
                                      logoView.heightAnchor.constraint(equalToConstant: 300),
@@ -68,29 +74,44 @@ class LoginViewController: UIViewController {
                                      
                                      
                                      
-                                     createButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 85),
+                                     createButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 100),
                                      createButton.topAnchor.constraint(equalTo: logInButton.safeAreaLayoutGuide.bottomAnchor, constant: 75),
                                      createButton.heightAnchor.constraint(equalToConstant: 45),
-                                     createButton.widthAnchor.constraint(equalToConstant: 350)])
+                                     createButton.widthAnchor.constraint(equalToConstant: 150)])
         
     }
     
     
     override func viewDidLoad() {
         super .viewDidLoad()
-        print("MainViewController Loaded")
+        passWordTxtBox.isSecureTextEntry = true//sets the texbox into a password format
+        print("LoginViewController Loaded")//debug string
     }
     
     
+    //presents the register view.
+    @objc func onTapCustomAlertButton(_ sender: Any) {
+    let customAlert = RegisterViewController()
+    customAlert.providesPresentationContextTransitionStyle = true
+    customAlert.definesPresentationContext = true
+    customAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+    customAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+    customAlert.delegate = self
+    self.present(customAlert, animated: true, completion: nil)
+    }
+    
+    //this logs the person in. aditional backend is needed
     @objc func performLogin(){
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: "isUserLoggedIn")
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func performRegister(){
-            let nextVC = RegisterViewController()
-            navigationController?.present(nextVC, animated: true, completion: nil)
-    }
-    
 }
+//extension to access the registers views info.
+extension LoginViewController: CustomAlertViewDelegate {
+    func registerButtonPressed(email: String) {
+        emailTxtBox.text = email
+    }
+}
+

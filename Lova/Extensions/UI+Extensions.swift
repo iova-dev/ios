@@ -57,7 +57,7 @@ extension UIButton {
         label.textAlignment = .right
         button.addSubview(label)
         NSLayoutConstraint.activate([label.topAnchor.constraint(equalTo: button.topAnchor, constant: 0),
-                                     label.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: 100),
+                                     label.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: 1),
                                      label.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 0)])
         return button
         
