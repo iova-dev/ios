@@ -74,10 +74,10 @@ class LoginViewController: UIViewController {
                                      
                                      
                                      
-                                     createButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 85),
+                                     createButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 100),
                                      createButton.topAnchor.constraint(equalTo: logInButton.safeAreaLayoutGuide.bottomAnchor, constant: 75),
                                      createButton.heightAnchor.constraint(equalToConstant: 45),
-                                     createButton.widthAnchor.constraint(equalToConstant: 350)])
+                                     createButton.widthAnchor.constraint(equalToConstant: 150)])
         
     }
     
