@@ -13,3 +13,7 @@ protocol MainControllerDelegate {
     func login()
     func logout()
 }
+
+protocol CustomAlertViewDelegate{
+    func registerButtonPressed(email: String)
+}

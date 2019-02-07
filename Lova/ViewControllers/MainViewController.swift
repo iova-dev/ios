@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         if(!isUserLoggedIn()){
-            let loginVC = RegisterViewController()
+            let loginVC = LoginViewController()
             navigationController?.present(loginVC, animated: true, completion: nil)
         }
 
