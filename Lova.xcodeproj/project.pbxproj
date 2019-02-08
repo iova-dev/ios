@@ -23,6 +23,8 @@
 		2BE2A631220367CE0084F52B /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A630220367CE0084F52B /* MenuOptions.swift */; };
 		2BF30CA3220788AD000A1C85 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF30CA2220788AD000A1C85 /* MainTableViewCell.swift */; };
 		2BF30CA5220A93AD000A1C85 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */; };
+		87830B4C220D61F300737812 /* LovaAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87830B4B220D61F300737812 /* LovaAPIClient.swift */; };
+		87830B4E220D620400737812 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87830B4D220D620400737812 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		2BF30CA2220788AD000A1C85 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2BF30CA6220B6105000A1C85 /* Lova.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lova.entitlements; sourceTree = "<group>"; };
+		87830B4B220D61F300737812 /* LovaAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovaAPIClient.swift; sourceTree = "<group>"; };
+		87830B4D220D620400737812 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		2BE2A5DA21FFEECA0084F52B /* Lova */ = {
 			isa = PBXGroup;
 			children = (
+				87830B4A220D61E200737812 /* Client */,
 				2BF30CA6220B6105000A1C85 /* Lova.entitlements */,
 				2BE2A62F220367BC0084F52B /* Models */,
 				2BE2A62E220356930084F52B /* Views */,
@@ -150,9 +155,18 @@
 		2BE2A62F220367BC0084F52B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				87830B4D220D620400737812 /* User.swift */,
 				2BE2A630220367CE0084F52B /* MenuOptions.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		87830B4A220D61E200737812 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				87830B4B220D61F300737812 /* LovaAPIClient.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +247,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87830B4E220D620400737812 /* User.swift in Sources */,
 				2BF30CA5220A93AD000A1C85 /* RegisterViewController.swift in Sources */,
+				87830B4C220D61F300737812 /* LovaAPIClient.swift in Sources */,
 				2BE2A5F02200C8880084F52B /* UI+Extensions.swift in Sources */,
 				2BE2A6282202CC670084F52B /* MenuViewController.swift in Sources */,
 				2BE2A62B2202CF8E0084F52B /* Protocols.swift in Sources */,

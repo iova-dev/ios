@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ContainerViewController: UIViewController{
+    let client = LovaAPIClient()
     var menuController: MenuViewController!
     var centerController: UIViewController!
     var isExpanded = false
@@ -110,6 +111,7 @@ extension ContainerViewController: MainControllerDelegate{
     }
     
     func logout() {
+        client.logout(completion: nil)
         navigationController?.present(LoginViewController(), animated: true, completion: nil)
         UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
     }

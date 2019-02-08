@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController {
-    
+    let client = LovaAPIClient()
     //initial set up
     var delegate: MainControllerDelegate?
     let logoView: UIImageView = UIImageView().initBasicImage(imageName: "logo")
@@ -102,9 +102,16 @@ class LoginViewController: UIViewController {
     
     //this logs the person in. aditional backend is needed
     @objc func performLogin(){
-        let defaults = UserDefaults.standard
-        defaults.set(true, forKey: "isUserLoggedIn")
-        self.dismiss(animated: true, completion: nil)
+        guard let user = emailTxtBox.text else {return}
+        guard let pass = passWordTxtBox.text else {return}
+        
+        
+        client.login(post: User(username: user, password: pass), view: self, completion: { (error) in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+            
+        })
     }
     
 }
