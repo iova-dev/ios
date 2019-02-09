@@ -20,9 +20,9 @@ struct User: Codable {
 }
 
 enum Route:String {
-    case login
-    case signup
-    case logout
+    case login = "login"
+    case signup = "signup"
+    case logout = "logout"
 }
 
 extension User: CustomStringConvertible {

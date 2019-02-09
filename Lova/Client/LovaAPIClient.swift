@@ -16,11 +16,15 @@ class LovaAPIClient {
     
     func login(post: User, view: UIViewController, completion: ((Error?) -> Void)?) {
         // Building the url for entry point
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "lova-backend.herokuapp.com"
-        urlComponents.path = "/api/auth/\(Route.login)"
-        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "lova-backend.herokuapp.com"
+//        urlComponents.path = "/api/auth/\(Route.login)"
+//        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+        
+        guard let url = URL(string: "http://localhost:4040/api/auth/login") else {
+            fatalError("Could not create URL from components")
+        }
         
         // Specify this request as being a POST method
         var request = URLRequest(url: url)
@@ -34,8 +38,7 @@ class LovaAPIClient {
         // Encode POST struct into JSON data
         let encoder = JSONEncoder()
         do {
-            let jsonData = try encoder.encode(post)
-            // Set request's HTTP body
+            let jsonData = try encoder.encode(post)            // Set request's HTTP body
             request.httpBody = jsonData
             print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
         } catch {
@@ -47,34 +50,36 @@ class LovaAPIClient {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { responseData, response, responseError in
             
-            guard responseError == nil else {
-                completion?(responseError)
-                return
-            }
-            
-            // Cookie value array
-            guard let cookie = HTTPCookieStorage.shared.cookies?.map({$0.value}) else {
-                return
-            }
-            
-            // API respond
-            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
-                if cookie == [] {
-                    print("response: ", utf8Representation)
-                    let defaults = UserDefaults.standard
-                    defaults.set(false, forKey: "isUserLoggedIn")
+            DispatchQueue.main.async {
+                guard responseError == nil else {
+                    completion?(responseError)
                     return
-                } else {
-                    let defaults = UserDefaults.standard
-                    defaults.set(true, forKey: "isUserLoggedIn")
-                    print("login...")
-                    print(UserDefaults.standard.bool(forKey: "isUserLoggedIn"))
-                    self.cookie = cookie
-                    view.dismiss(animated: true, completion: nil)
-                    
                 }
-            } else {
-                print("no readable data received in response")
+                
+                // Cookie value array
+                guard let cookie = HTTPCookieStorage.shared.cookies?.map({$0.value}) else {
+                    return
+                }
+                
+                // API respond
+                if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
+                    if cookie == [] {
+                        print("response: ", utf8Representation)
+                        let defaults = UserDefaults.standard
+                        defaults.set(false, forKey: "isUserLoggedIn")
+                        return
+                    } else {
+                        let defaults = UserDefaults.standard
+                        defaults.set(true, forKey: "isUserLoggedIn")
+                        print("login...")
+                        print(UserDefaults.standard.bool(forKey: "isUserLoggedIn"))
+                        self.cookie = cookie
+                        view.dismiss(animated: true, completion: nil)
+                        
+                    }
+                } else {
+                    print("no readable data received in response")
+                }
             }
         }
         task.resume()
@@ -82,11 +87,16 @@ class LovaAPIClient {
     
     func logout(completion: ((Error?) -> Void)?) {
         // Building the url for entry point
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "lova-backend.herokuapp.com"
-        urlComponents.path = "/api/auth/\(Route.logout)"
-        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "lova-backend.herokuapp.com"
+//        urlComponents.path =  "/api/auth/\(Route.logout)"
+//        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+//
+        
+        guard let url = URL(string: "http://localhost:4040/api/auth/logout") else {
+            fatalError("Could not create URL from components")
+        }
         
         // Specify this request as being a POST method
         var request = URLRequest(url: url)
@@ -140,11 +150,26 @@ class LovaAPIClient {
     
     func signup(post: User, view: UIViewController, completion: ((Error?) -> Void)?) {
         // Building the url for entry point
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "lova-backend.herokuapp.com"
-        urlComponents.path = "/api/auth/\(Route.signup)"
-        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+        
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "lova-backend.herokuapp.com"
+//        urlComponents.path = "/api/auth/\(Route.signup)"
+//        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+        
+        
+        guard let url = URL(string: "http://localhost:4040/api/auth/signup") else {
+            fatalError("Could not create URL from components")
+        }
+
+        print("""
+            
+            
+            URL: \(url)
+            
+            
+            
+            """)
         
         // Specify this request as being a POST method
         var request = URLRequest(url: url)
@@ -171,33 +196,35 @@ class LovaAPIClient {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { responseData, response, responseError in
             
-            guard responseError == nil else {
-                completion?(responseError)
-                return
-            }
-            
-            // Cookie value array
-            guard let cookie = HTTPCookieStorage.shared.cookies?.map({$0.value}) else {
-                return
-            }
-            
-            // API respond
-            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
-                if cookie == [] {
-                    print("response: ", utf8Representation)
-                    let defaults = UserDefaults.standard
-                    defaults.set(false, forKey: "isUserLoggedIn")
+            DispatchQueue.main.async {
+                guard responseError == nil else {
+                    completion?(responseError)
                     return
-                } else {
-                    let defaults = UserDefaults.standard
-                    defaults.set(true, forKey: "isUserLoggedIn")//sets the user status
-                    self.register?.delegate?.registerButtonPressed(email: self.register?.emailTxtBox.text ?? "")
-                    self.cookie = cookie
-                    view.dismiss(animated: true, completion: nil)
-                    
                 }
-            } else {
-                print("no readable data received in response")
+                
+                // Cookie value array
+                guard let cookie = HTTPCookieStorage.shared.cookies?.map({$0.value}) else {
+                    return
+                }
+                
+                // API respond
+                if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
+                    if cookie == [] {
+                        print("response: ", utf8Representation)
+                        let defaults = UserDefaults.standard
+                        defaults.set(false, forKey: "isUserLoggedIn")
+                        return
+                    } else {
+                        let defaults = UserDefaults.standard
+                        defaults.set(true, forKey: "isUserLoggedIn")//sets the user status
+                        self.register?.delegate?.registerButtonPressed(email: self.register?.emailTxtBox.text ?? "")
+                        self.cookie = cookie
+                        view.dismiss(animated: true, completion: nil)
+                        
+                    }
+                } else {
+                    print("no readable data received in response")
+                }
             }
         }
         task.resume()
