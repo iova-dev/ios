@@ -212,7 +212,7 @@ class LovaAPIClient {
                     if cookie == [] {
                         print("response: ", utf8Representation)
                         let defaults = UserDefaults.standard
-                        defaults.set(false, forKey: "isUserLoggedIn")
+                        defaults.set(false, forKey: "isUserLoggedIn") // TODO: Error handling signup error.
                         return
                     } else {
                         let defaults = UserDefaults.standard

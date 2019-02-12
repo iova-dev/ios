@@ -125,7 +125,7 @@ class RegisterViewController: UIViewController {
         guard let pass = passwordTxtBox.text else {return}
         client.signup(post: User(username: user, password: pass), view: self) { (error) in
             if let error = error {
-                fatalError(error.localizedDescription)
+                fatalError(error.localizedDescription) // TODO: Error handling operation the server is Down.
             }
         }
     }
