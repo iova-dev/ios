@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class RegisterViewController: UIViewController {
+    let client = LovaAPIClient()
     //Decalring all the variables going tobe used for this view
     var delegate: CustomAlertViewDelegate?
     let logoView: UIImageView = UIImageView().initBasicImage(imageName: "logo")
@@ -120,10 +121,13 @@ class RegisterViewController: UIViewController {
     
     //this is where some of the connection will go.
     @objc func performRegister(){//called when the resgister button is pressed
-        let defaults = UserDefaults.standard
-        defaults.set(true, forKey: "isUserLoggedIn")//sets the user status
-        delegate?.registerButtonPressed(email: emailTxtBox.text ?? "")
-        self.dismiss(animated: true, completion: nil)
+        guard let user = emailTxtBox.text else {return}
+        guard let pass = passwordTxtBox.text else {return}
+        client.signup(post: User(username: user, password: pass), view: self) { (error) in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+        }
     }
     //called when the cancel button is pressed
     @objc func cancelButtonPressed(){
