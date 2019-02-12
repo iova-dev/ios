@@ -62,6 +62,7 @@ extension UIButton {
         return button
         
     }
+    
 }
 
 extension UITableView{
@@ -182,7 +183,7 @@ extension UIViewController{
         if log {
             return true
         }else{
-            return false
+            return true
         }
     }
 }

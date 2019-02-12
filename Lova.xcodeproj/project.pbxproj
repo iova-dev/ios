@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BB19D8222127BE9003C2898 /* AddPromiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB19D8122127BE9003C2898 /* AddPromiseViewController.swift */; };
 		2BE2A5DC21FFEECA0084F52B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A5DB21FFEECA0084F52B /* AppDelegate.swift */; };
 		2BE2A5DE21FFEECA0084F52B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A5DD21FFEECA0084F52B /* MainViewController.swift */; };
 		2BE2A5E321FFEECD0084F52B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BE2A5E221FFEECD0084F52B /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BB19D8122127BE9003C2898 /* AddPromiseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromiseViewController.swift; sourceTree = "<group>"; };
 		2BE2A5D821FFEECA0084F52B /* Lova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE2A5DB21FFEECA0084F52B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BE2A5DD21FFEECA0084F52B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				2BE2A6272202CC670084F52B /* MenuViewController.swift */,
 				2BE2A5ED2200C8550084F52B /* LoginViewController.swift */,
 				2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */,
+				2BB19D8122127BE9003C2898 /* AddPromiseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				2BF30CA5220A93AD000A1C85 /* RegisterViewController.swift in Sources */,
 				87830B4C220D61F300737812 /* LovaAPIClient.swift in Sources */,
 				2BE2A5F02200C8880084F52B /* UI+Extensions.swift in Sources */,
+				2BB19D8222127BE9003C2898 /* AddPromiseViewController.swift in Sources */,
 				2BE2A6282202CC670084F52B /* MenuViewController.swift in Sources */,
 				2BE2A62B2202CF8E0084F52B /* Protocols.swift in Sources */,
 				2BE2A5EE2200C8550084F52B /* LoginViewController.swift in Sources */,

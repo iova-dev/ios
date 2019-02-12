@@ -40,7 +40,6 @@ class ContainerViewController: UIViewController{
         navigationController?.navigationBar.layer.masksToBounds = false
         navigationController?.navigationBar.layer.shadowRadius = 5
         navigationController?.navigationBar.layer.shadowOpacity = 0.5
-        
     }
     
     func configureHomeController(){

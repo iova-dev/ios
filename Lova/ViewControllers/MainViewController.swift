@@ -9,7 +9,40 @@
 import UIKit
 class MainViewController: UIViewController {
     var tableView: UITableView!
+    var addButton: UIButton!
     let cellId = "MainCell"
+    
+    
+    
+    
+    
+    
+    func configureAddButton(){
+        addButton = UIButton()
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.setTitle("+", for: .normal)
+        addButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        addButton.setTitleColor(.black, for: .normal)
+        addButton.backgroundColor = .white
+        addButton.layer.borderColor = UIColor.init(hexString: "#2ecc71").cgColor
+        addButton.layer.borderWidth = 1
+        addButton.layer.shadowColor = UIColor.black.cgColor
+        addButton.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        addButton.layer.masksToBounds = false
+        addButton.layer.shadowRadius = 5
+        addButton.layer.shadowOpacity = 0.5
+        addButton.layer.cornerRadius = 37.5
+        addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
+        
+        tableView.addSubview(addButton)
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        
+    }
     
     
     func configureTableView(){
@@ -46,12 +79,21 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print("MainViewController Loaded")
         configureTableView()
-        
+        configureAddButton()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    
+    @objc func addButtonPressed(_ sender: UIButton){
+        let addVC = AddPromiseViewController()
+        navigationController?.pushViewController(addVC, animated: true)
+    }
 }
+
+
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
