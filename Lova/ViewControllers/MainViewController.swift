@@ -8,9 +8,8 @@
 
 import UIKit
 class MainViewController: UIViewController {
-    var tableView: UITableView!
+    var collectionView: UICollectionView!
     var addButton: UIButton!
-    let cellId = "MainCell"
     
     
     
@@ -34,34 +33,37 @@ class MainViewController: UIViewController {
         addButton.layer.cornerRadius = 37.5
         addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
         
-        tableView.addSubview(addButton)
+        collectionView.addSubview(addButton)
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.bottomAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: tableView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+        addButton.bottomAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
         
     }
     
     
-    func configureTableView(){
-        tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
-        tableView.backgroundColor = .white
-        tableView.separatorStyle = .singleLine
-        tableView.sizeToFit()
-        tableView.layoutMargins = UIEdgeInsets.zero
-        tableView.separatorInset = UIEdgeInsets.zero
+    func configureCollectionView(){
         
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            // Instantiating the UICollectionView, using the default flow layout
+            collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CustomFlowLayout())
+            collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            collectionView.backgroundColor = .white
+            
+            // Setting the datasource & delegate
+            collectionView.dataSource = self
+            collectionView.delegate = self
+            
+            // Customization
+            collectionView.alwaysBounceVertical = true
+            
+            //Registering the cell
+            collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: MainViewCell.reUseId)
+            
+            view.addSubview(collectionView)
+        
         
     }
     var delegate: MainControllerDelegate?
@@ -81,7 +83,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         print("MainViewController Loaded")
-        configureTableView()
+        configureCollectionView()
         configureAddButton()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -94,17 +96,60 @@ class MainViewController: UIViewController {
 }
 
 
-
-extension MainViewController: UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return 3
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MainTableViewCell
-        
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCell.reUseId, for: indexPath) as! MainViewCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+        
+   
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
     
 }
 
+
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width - 15, height: collectionView.bounds.height / 8 )
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 25, left: 10, bottom: 25, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 50
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+}
