@@ -10,11 +10,7 @@ import UIKit
 class MainViewController: UIViewController {
     var collectionView: UICollectionView!
     var addButton: UIButton!
-    
-    
-    
-    
-    
+    var promises: [promise] = []
     
     func configureAddButton(){
         addButton = UIButton()
@@ -43,7 +39,6 @@ class MainViewController: UIViewController {
         
     }
     
-    
     func configureCollectionView(){
         
             // Instantiating the UICollectionView, using the default flow layout
@@ -64,9 +59,9 @@ class MainViewController: UIViewController {
             
             view.addSubview(collectionView)
         
-        
     }
     var delegate: MainControllerDelegate?
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
@@ -105,6 +100,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCell.reUseId, for: indexPath) as! MainViewCell
+        
         return cell
     }
     
@@ -152,4 +148,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+}
+struct promise{
+    var title: String?
+    var startDate: String?
+    
+    init(title: String, startDate: String) {
+        self.title = title
+        self.startDate = startDate
+    }
 }
