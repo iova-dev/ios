@@ -108,7 +108,7 @@ class LoginViewController: UIViewController {
         
         client.login(post: User(username: user, password: pass), view: self, completion: { (error) in
             if let error = error {
-                fatalError(error.localizedDescription)
+                fatalError(error.localizedDescription) // TODO: Error handling operation the server is Down.
             }
             
         })
