@@ -75,7 +75,7 @@ class MainViewCell: UICollectionViewCell {
         configureViews()
         // Customization
         self.isUserInteractionEnabled = true
-        self.backgroundColor = UIColor.init(hexString: "#696969")
+        self.backgroundColor = UIColor.init(hexString: "#2ecc71")
         self.layer.cornerRadius = 15
         self.layer.shadowOpacity = 0.5
         self.layer.shadowRadius = 5

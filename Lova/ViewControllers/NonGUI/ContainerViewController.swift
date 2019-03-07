@@ -98,6 +98,8 @@ class ContainerViewController: UIViewController{
             print("settings")
         case .logout:
             logout()
+        case .about:
+            print("About")
         }
     }
     @objc func showSideMenu(){

@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 extension UIButton {
+    
     // creates a basic button with given parameters
-    func initBasicButton( title: String, titleSize: CGFloat, titleHexColor: String, backGroundHexColor: String) -> UIButton{
+    static func initBasicButton( title: String, titleSize: CGFloat, titleHexColor: String, backGroundHexColor: String) -> UIButton{
         let button = UIButton()
         guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
             fatalError("""
@@ -35,11 +36,27 @@ extension UIButton {
         return button
     }
     
+    static func createButton(titleLabel: String) -> UIButton{
+        let button = UIButton()
+        button.setTitle(titleLabel, for: .normal)
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        button.titleLabel?.textAlignment = .center
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderColor = UIColor.init(hexString: "#2ecc71").cgColor
+        button.layer.borderWidth = 1
+        button.backgroundColor = UIColor(hexString: "#2ecc71")
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        button.layer.shadowRadius = 5
+        button.layer.shadowOpacity = 0.5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
     
     
     
-    
-    func initStringButton(textBeforeButton: String, buttonText: String) -> UIButton{
+    static func initStringButton(textBeforeButton: String, buttonText: String) -> UIButton{
         let button = UIButton()
         guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
             fatalError("""
@@ -65,8 +82,32 @@ extension UIButton {
     
 }
 
+extension UILabel {
+    
+    static func createLabel(text: String, alignment: NSTextAlignment) -> UILabel{
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = alignment
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+}
+
+
+
+extension UITextView{
+    static func createTextField(maxLines: Int) -> UITextView{
+        let field = UITextView()
+        field.layer.borderWidth = 0.5
+        field.textContainer.maximumNumberOfLines = maxLines
+        field.backgroundColor = UIColor(hexString: "#2ecc71")
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
+    }
+}
+
 extension UITableView{
-    func initFullTableView()->UITableView{
+    static func initFullTableView()->UITableView{
         let table = UITableView(frame: .infinite)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
@@ -75,7 +116,7 @@ extension UITableView{
 
 extension UITextField {
     // creates a basic text Field with given parameters. ex: let basic txtField = UITextField().initBasicTxtField(placeHolder: "place holder text, textSize: 20, backGroundHexColor: "#9875AA"")
-    func initBasicTxtField(placeHolder: String, textSize: CGFloat) -> UITextField{
+   static  func initBasicTxtField(placeHolder: String, textSize: CGFloat) -> UITextField{
         let txtField = UITextField()
         guard let customFont = UIFont(name: "Lusitana", size: UIFont.labelFontSize) else {
             fatalError("""
@@ -102,7 +143,7 @@ extension UITextField {
 }
 
 extension UILabel {
-    func initLabel(text: String, fontSize: CGFloat,  hexcolor: String) -> UILabel{
+     func initLabel(text: String, fontSize: CGFloat,  hexcolor: String) -> UILabel{
         let label = UILabel()
         guard let customFont = UIFont(name: "Raleway-Regular", size: UIFont.labelFontSize) else {
             fatalError("""
@@ -126,7 +167,7 @@ extension UILabel {
 
 
 extension UIImageView {
-    func initBasicImage(imageName: String) -> UIImageView{
+    static func initBasicImage(imageName: String) -> UIImageView{
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: imageName)
@@ -139,11 +180,18 @@ extension UIImageView {
 }
 
 extension UIView{
-    func initSideMenu() -> UIView{
+    static func initSideMenu() -> UIView{
         let menu = UIView()
         menu.translatesAutoresizingMaskIntoConstraints = false
         menu.backgroundColor = UIColor.init(hexString: "#2ecc71")
         return menu
+    }
+    
+    static func createView(bgColor: UIColor) -> UIView{
+        let view = UIView()
+        view.backgroundColor = bgColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }
 }
 
@@ -187,6 +235,7 @@ extension UIViewController{
         }
     }
 }
+
 
 extension UIColor {
     //this extensions allows the devs to use hex as UIColors. ex. let red = UIColor.init(hexString "#000000")

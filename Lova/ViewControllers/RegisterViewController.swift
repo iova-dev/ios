@@ -13,15 +13,15 @@ class RegisterViewController: UIViewController {
     let client = LovaAPIClient()
     //Decalring all the variables going tobe used for this view
     var delegate: CustomAlertViewDelegate?
-    let logoView: UIImageView = UIImageView().initBasicImage(imageName: "logo")
-    let nameTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "full name*", textSize: 20)
-    let emailTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Email*", textSize: 20)
-    let passwordTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Password*", textSize: 20)
-    let confirmPasswordTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Re-Type Password*", textSize: 20)
-    let RegisterButton: UIButton = UIButton().initBasicButton(title: "Register", titleSize: 25, titleHexColor: "#FFFFFFFF", backGroundHexColor: "#919191")
-    let cancelButton: UIButton = UIButton().initStringButton(textBeforeButton: "", buttonText: "Cancel")
-    let passwordErrorLable: UIButton = UIButton().initStringButton(textBeforeButton: "", buttonText: "Password is not strong enough")
-      let confirmPasswordErrorLable: UIButton = UIButton().initStringButton(textBeforeButton: "", buttonText: "Password is not the same")
+    let logoView: UIImageView = UIImageView.initBasicImage(imageName: "logo")
+    let nameTxtBox: UITextField = UITextField.initBasicTxtField(placeHolder: "full name*", textSize: 20)
+    let emailTxtBox: UITextField = UITextField.initBasicTxtField(placeHolder: "Email*", textSize: 20)
+    let passwordTxtBox: UITextField = UITextField.initBasicTxtField(placeHolder: "Password*", textSize: 20)
+    let confirmPasswordTxtBox: UITextField = UITextField.initBasicTxtField(placeHolder: "Re-Type Password*", textSize: 20)
+    let RegisterButton: UIButton = UIButton.initBasicButton(title: "Register", titleSize: 25, titleHexColor: "#FFFFFFFF", backGroundHexColor: "#919191")
+    let cancelButton: UIButton = UIButton.initStringButton(textBeforeButton: "", buttonText: "Cancel")
+    let passwordErrorLable: UIButton = UIButton.initStringButton(textBeforeButton: "", buttonText: "Password is not strong enough")
+      let confirmPasswordErrorLable: UIButton = UIButton.initStringButton(textBeforeButton: "", buttonText: "Password is not the same")
     
     //additional setup before the view can be seen
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +34,7 @@ class RegisterViewController: UIViewController {
         confirmPasswordErrorLable.isHidden = true
         RegisterButton.addTarget(self, action: #selector(performRegister), for: .touchUpInside)
         passwordTxtBox.addTarget(self, action: #selector(isPasswordValid), for: .editingChanged)
-        confirmPasswordTxtBox.addTarget(self, action: #selector(isConfirmPasswordSame(_:)), for: .editingChanged)
+        confirmPasswordTxtBox.addTarget(self, action: #selector(isConfirmPasswordSame), for: .editingChanged)
         passwordTxtBox.textContentType = .newPassword
         confirmPasswordTxtBox.textContentType = .password
         RegisterButton.isEnabled = false
@@ -138,7 +138,7 @@ class RegisterViewController: UIViewController {
     //use NSpredicate to validate the password fields
     @objc func isPasswordValid(_ sender: AnyObject?) -> Bool{
         guard let password = sender?.text else{return false}
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         let result = passwordTest.evaluate(with: password)
         
         if result{
@@ -178,6 +178,8 @@ class RegisterViewController: UIViewController {
         }
         return result
     }
+    
+    
 }
 
 

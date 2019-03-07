@@ -13,12 +13,12 @@ class LoginViewController: UIViewController {
     let client = LovaAPIClient()
     //initial set up
     var delegate: MainControllerDelegate?
-    let logoView: UIImageView = UIImageView().initBasicImage(imageName: "logo")
-    let emailTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Email", textSize: 20)
-    let passWordTxtBox: UITextField = UITextField().initBasicTxtField(placeHolder: "Password", textSize: 20)
+    let logoView: UIImageView = UIImageView.initBasicImage(imageName: "logo")
+    let emailTxtBox: UITextField = UITextField.initBasicTxtField(placeHolder: "Email", textSize: 20)
+    let passWordTxtBox: UITextField = UITextField.initBasicTxtField(placeHolder: "Password", textSize: 20)
     let tagLine: UILabel = UILabel().initLabel(text: "Welcome back, \("Buzz")", fontSize: 75, hexcolor: "#c6c6c6")
-    let logInButton: UIButton = UIButton().initBasicButton(title: "Log in", titleSize: 25, titleHexColor: "#FFFFFFFF", backGroundHexColor: "#2ecc71")
-    let createButton: UIButton = UIButton().initStringButton(textBeforeButton: "Don't have an account?", buttonText: "Create an account!")
+    let logInButton: UIButton = UIButton.initBasicButton(title: "Log in", titleSize: 25, titleHexColor: "#FFFFFFFF", backGroundHexColor: "#2ecc71")
+    let createButton: UIButton = UIButton.initStringButton(textBeforeButton: "Don't have an account?", buttonText: "Create an account!")
     
     override func viewWillAppear(_ animated: Bool) {
         
