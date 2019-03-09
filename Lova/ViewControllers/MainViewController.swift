@@ -81,6 +81,7 @@ class MainViewController: UIViewController {
         configureCollectionView()
         configureAddButton()
         // Do any additional setup after loading the view, typically from a nib.
+        hideKeyboardWhenTappedAround()
     }
     
     

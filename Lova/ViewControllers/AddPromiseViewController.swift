@@ -83,6 +83,7 @@ class AddPromiseViewController: UIViewController {
         backButton.backgroundColor = UIColor.clear
         backButton.layer.borderWidth = 0
         backButton.layer.shadowOpacity = 0
+        hideKeyboardWhenTappedAround()
     }
     
     

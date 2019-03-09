@@ -86,6 +86,7 @@ class LoginViewController: UIViewController {
         super .viewDidLoad()
         passWordTxtBox.isSecureTextEntry = true//sets the texbox into a password format
         print("LoginViewController Loaded")//debug string
+        hideKeyboardWhenTappedAround()
     }
     
     
