@@ -30,6 +30,9 @@
 		2BE2A631220367CE0084F52B /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2A630220367CE0084F52B /* MenuOptions.swift */; };
 		2BF30CA3220788AD000A1C85 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF30CA2220788AD000A1C85 /* MainViewCell.swift */; };
 		2BF30CA5220A93AD000A1C85 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */; };
+		870F8426223359E000DCDC92 /* Promise+CRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F8425223359E000DCDC92 /* Promise+CRUD.swift */; };
+		870F8428223359EC00DCDC92 /* PromiseApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F8427223359EC00DCDC92 /* PromiseApiService.swift */; };
+		870F842A223359F900DCDC92 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F8429223359F900DCDC92 /* Promise.swift */; };
 		87830B4C220D61F300737812 /* LovaAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87830B4B220D61F300737812 /* LovaAPIClient.swift */; };
 		87830B4E220D620400737812 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87830B4D220D620400737812 /* User.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +64,9 @@
 		2BF30CA2220788AD000A1C85 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		2BF30CA4220A93AD000A1C85 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2BF30CA6220B6105000A1C85 /* Lova.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lova.entitlements; sourceTree = "<group>"; };
+		870F8425223359E000DCDC92 /* Promise+CRUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promise+CRUD.swift"; sourceTree = "<group>"; };
+		870F8427223359EC00DCDC92 /* PromiseApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseApiService.swift; sourceTree = "<group>"; };
+		870F8429223359F900DCDC92 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		87830B4B220D61F300737812 /* LovaAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovaAPIClient.swift; sourceTree = "<group>"; };
 		87830B4D220D620400737812 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +192,7 @@
 			children = (
 				87830B4D220D620400737812 /* User.swift */,
 				2BE2A630220367CE0084F52B /* MenuOptions.swift */,
+				870F8429223359F900DCDC92 /* Promise.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,7 +200,9 @@
 		87830B4A220D61E200737812 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				870F8425223359E000DCDC92 /* Promise+CRUD.swift */,
 				87830B4B220D61F300737812 /* LovaAPIClient.swift */,
+				870F8427223359EC00DCDC92 /* PromiseApiService.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -277,11 +286,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				87830B4E220D620400737812 /* User.swift in Sources */,
+				870F842A223359F900DCDC92 /* Promise.swift in Sources */,
 				2BF30CA5220A93AD000A1C85 /* RegisterViewController.swift in Sources */,
 				2B345FF1222D043200E332B8 /* ProfileViewController.swift in Sources */,
 				87830B4C220D61F300737812 /* LovaAPIClient.swift in Sources */,
 				2BE2A5F02200C8880084F52B /* UI+Extensions.swift in Sources */,
 				2BB19D8222127BE9003C2898 /* AddPromiseViewController.swift in Sources */,
+				870F8428223359EC00DCDC92 /* PromiseApiService.swift in Sources */,
 				2BE2A6282202CC670084F52B /* MenuViewController.swift in Sources */,
 				2B345FEA222CAA3700E332B8 /* CharityCustomCell.swift in Sources */,
 				2BE2A62B2202CF8E0084F52B /* Protocols.swift in Sources */,
@@ -293,6 +304,7 @@
 				2BE2A5DE21FFEECA0084F52B /* MainViewController.swift in Sources */,
 				2BE2A5DC21FFEECA0084F52B /* AppDelegate.swift in Sources */,
 				2BE2A631220367CE0084F52B /* MenuOptions.swift in Sources */,
+				870F8426223359E000DCDC92 /* Promise+CRUD.swift in Sources */,
 				2BB19D842214D27F003C2898 /* CustomFlowLayout.swift in Sources */,
 				2BF30CA3220788AD000A1C85 /* MainViewCell.swift in Sources */,
 				2B345FED222D001C00E332B8 /* SettingsViewController.swift in Sources */,
@@ -435,13 +447,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lova/Lova.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4E3GPM4HDT;
+				DEVELOPMENT_TEAM = 29KKRTJA28;
 				INFOPLIST_FILE = Lova/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ErespiStudios.Applications.Lova;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramongeronimo.Lova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,13 +466,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lova/Lova.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4E3GPM4HDT;
+				DEVELOPMENT_TEAM = 29KKRTJA28;
 				INFOPLIST_FILE = Lova/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ErespiStudios.Applications.Lova;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramongeronimo.Lova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

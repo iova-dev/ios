@@ -40,8 +40,8 @@ class LoginViewController: UIViewController {
         //setting the constraints
         NSLayoutConstraint.activate([logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      logoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-                                     logoView.heightAnchor.constraint(equalToConstant: 300),
-                                     logoView.widthAnchor.constraint(equalToConstant: 300),
+                                     logoView.heightAnchor.constraint(equalToConstant: 200),
+                                     logoView.widthAnchor.constraint(equalToConstant: 200),
                                      
                                      
                                      
@@ -86,6 +86,7 @@ class LoginViewController: UIViewController {
         super .viewDidLoad()
         passWordTxtBox.isSecureTextEntry = true//sets the texbox into a password format
         print("LoginViewController Loaded")//debug string
+        hideKeyboardWhenTappedAround()
     }
     
     

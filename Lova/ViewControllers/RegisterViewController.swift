@@ -117,6 +117,7 @@ class RegisterViewController: UIViewController {
         super .viewDidLoad()
         self.becomeFirstResponder()//set so view can be pushed kinda hacky
         print("RegisterViewController Loaded")//debug string
+        hideKeyboardWhenTappedAround()
     }
     
     //this is where some of the connection will go.

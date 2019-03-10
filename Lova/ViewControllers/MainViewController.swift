@@ -10,7 +10,8 @@ import UIKit
 class MainViewController: UIViewController {
     var collectionView: UICollectionView!
     var addButton: UIButton!
-    var promises: [promise] = []
+    var promises: [Promise] = []
+    var client = PromiseApiService()
     
     func configureAddButton(){
         addButton = UIButton()
@@ -32,7 +33,7 @@ class MainViewController: UIViewController {
         collectionView.addSubview(addButton)
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.bottomAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
+        addButton.bottomAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
         addButton.trailingAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
@@ -71,6 +72,9 @@ class MainViewController: UIViewController {
             let loginVC = LoginViewController()
             navigationController?.present(loginVC, animated: true, completion: nil)
         }
+        client.fetchSources()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollectionview), name: NSNotification.Name(rawValue: "reloadTableView"), object: nil)
+        print("Count is: \(promises.count)")
 
     }
 
@@ -81,6 +85,8 @@ class MainViewController: UIViewController {
         configureCollectionView()
         configureAddButton()
         // Do any additional setup after loading the view, typically from a nib.
+        hideKeyboardWhenTappedAround()
+
     }
     
     
@@ -88,19 +94,25 @@ class MainViewController: UIViewController {
         let addVC = AddPromiseViewController()
         navigationController?.pushViewController(addVC, animated: true)
     }
+    
+    @objc func reloadCollectionview(){
+        self.promises = client.returnSources()
+        self.collectionView.reloadData()
+    }
 }
 
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return promises.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewCell.reUseId, for: indexPath) as! MainViewCell
-        
+        cell.promisetitle?.text = promises[indexPath.row].title
+        cell.dueTitle?.text = promises[indexPath.row].body
         return cell
     }
     

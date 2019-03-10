@@ -12,6 +12,8 @@ import UIKit
 
 class AddPromiseViewController: UIViewController {
     //initial set up
+    var client = LovaAPIClient()
+    
     let trailingOffset: CGFloat = -25
     let leadingOffset: CGFloat = 25
     var mainTitle = UILabel.createLabel(text: "I promise to...", alignment: .left)
@@ -83,6 +85,7 @@ class AddPromiseViewController: UIViewController {
         backButton.backgroundColor = UIColor.clear
         backButton.layer.borderWidth = 0
         backButton.layer.shadowOpacity = 0
+        hideKeyboardWhenTappedAround()
     }
     
     
@@ -122,6 +125,12 @@ class AddPromiseViewController: UIViewController {
             break
         case 1:
             navigationController?.popViewController(animated: true)
+            guard let title = titleTextBox.text, let body = detailTextBox.text else {return}
+            client.create(post: Promise(_id: nil, title: title, body: body, money: money), view: self) { (error) in
+                if let error = error {
+                    fatalError(error.localizedDescription) // TODO: Error handling operation the server is Down.
+                }
+            }
             break
         default:
             print("should not be here")

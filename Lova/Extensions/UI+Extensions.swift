@@ -231,7 +231,7 @@ extension UIViewController{
         if log {
             return true
         }else{
-            return true
+            return false
         }
     }
 }
