@@ -86,14 +86,7 @@ class MainViewController: UIViewController {
         configureAddButton()
         // Do any additional setup after loading the view, typically from a nib.
         hideKeyboardWhenTappedAround()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-        
->>>>>>> Stashed changes
-=======
-        
->>>>>>> Stashed changes
+
     }
     
     
