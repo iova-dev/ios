@@ -62,6 +62,7 @@ extension LovaAPIClient {
                 if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
                     print("Added promise successfully")
                     print(utf8Representation)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTableView"), object: nil)
                     view.navigationController?.popViewController(animated: true)
                 } else {
                     print("no readable data received in response")

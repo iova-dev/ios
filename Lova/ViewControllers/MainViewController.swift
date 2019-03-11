@@ -96,6 +96,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func reloadCollectionview(){
+        print("Reloading.....")
         self.promises = client.returnSources()
         self.collectionView.reloadData()
     }

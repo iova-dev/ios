@@ -124,13 +124,13 @@ class AddPromiseViewController: UIViewController {
             }
             break
         case 1:
-            navigationController?.popViewController(animated: true)
             guard let title = titleTextBox.text, let body = detailTextBox.text else {return}
             client.create(post: Promise(_id: nil, title: title, body: body, money: money), view: self) { (error) in
                 if let error = error {
                     fatalError(error.localizedDescription) // TODO: Error handling operation the server is Down.
                 }
             }
+            navigationController?.popViewController(animated: true)
             break
         default:
             print("should not be here")
