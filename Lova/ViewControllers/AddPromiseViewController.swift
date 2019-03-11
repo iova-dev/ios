@@ -13,7 +13,7 @@ import UIKit
 class AddPromiseViewController: UIViewController {
     //initial set up
     var client = LovaAPIClient()
-    
+    var delegate: reloadDataDelagate?
     let trailingOffset: CGFloat = -25
     let leadingOffset: CGFloat = 25
     var mainTitle = UILabel.createLabel(text: "I promise to...", alignment: .left)
@@ -124,17 +124,18 @@ class AddPromiseViewController: UIViewController {
             }
             break
         case 1:
-            navigationController?.popViewController(animated: true)
             guard let title = titleTextBox.text, let body = detailTextBox.text else {return}
             client.create(post: Promise(_id: nil, title: title, body: body, money: money), view: self) { (error) in
                 if let error = error {
                     fatalError(error.localizedDescription) // TODO: Error handling operation the server is Down.
                 }
             }
+            navigationController?.popViewController(animated: true)
             break
         default:
             print("should not be here")
         }
+        self.delegate?.reloadData()
     }
     
     @objc func cancelPressed(){
@@ -144,6 +145,8 @@ class AddPromiseViewController: UIViewController {
     
     @objc func backButtonPressed(){
         navigationController?.popViewController(animated: true)
+        
+        
     }
     
     func popCharities(){

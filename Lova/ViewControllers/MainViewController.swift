@@ -96,6 +96,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func reloadCollectionview(){
+        print("Reloading.....")
         self.promises = client.returnSources()
         self.collectionView.reloadData()
     }
@@ -161,6 +162,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+extension MainViewController: reloadDataDelagate {
+    func reloadData() {
+        self.collectionView.reloadData()
+    }
+}
+
 struct promise{
     var title: String?
     var startDate: String?
