@@ -13,7 +13,7 @@ import UIKit
 class AddPromiseViewController: UIViewController {
     //initial set up
     var client = LovaAPIClient()
-    
+    var delegate: reloadDataDelagate?
     let trailingOffset: CGFloat = -25
     let leadingOffset: CGFloat = 25
     var mainTitle = UILabel.createLabel(text: "I promise to...", alignment: .left)
@@ -135,6 +135,7 @@ class AddPromiseViewController: UIViewController {
         default:
             print("should not be here")
         }
+        self.delegate?.reloadData()
     }
     
     @objc func cancelPressed(){
@@ -144,6 +145,8 @@ class AddPromiseViewController: UIViewController {
     
     @objc func backButtonPressed(){
         navigationController?.popViewController(animated: true)
+        
+        
     }
     
     func popCharities(){

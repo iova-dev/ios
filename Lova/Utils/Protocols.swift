@@ -14,6 +14,10 @@ protocol MainControllerDelegate {
     func logout()
 }
 
+protocol reloadDataDelagate {
+    func reloadData()
+}
+
 protocol CustomAlertViewDelegate{
     func registerButtonPressed(email: String)
 }

@@ -162,6 +162,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+extension MainViewController: reloadDataDelagate {
+    func reloadData() {
+        self.collectionView.reloadData()
+    }
+}
+
 struct promise{
     var title: String?
     var startDate: String?
